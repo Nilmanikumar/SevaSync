@@ -13,4 +13,6 @@ router.post('/triage', protect, triageAndFindDoctors);
 router.post('/book', protect, bookAppointment);
 router.get('/queue', protect, getQueue);
 
+
+
 module.exports = router;
