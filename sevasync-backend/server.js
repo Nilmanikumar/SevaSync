@@ -14,6 +14,9 @@ app.use(cors());
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/patients", require("./routes/patientRoutes"));
 
+app.use("/api/doctor/auth", require("./routes/doctorAuthRoutes"));
+
+
 const Doctor = require('./models/Doctor');
 
 // Seed doctors
