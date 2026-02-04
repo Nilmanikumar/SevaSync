@@ -13,8 +13,22 @@ const AppointmentSchema = new mongoose.Schema({
   predictedDepartment: { type: String },
   aiSeverityScore: { type: Number },
 
-  doctorId: { type: mongoose.Schema.Types.ObjectId, ref: 'Doctor' },
-  status: { type: String, default: 'Pending' }
-});
+  // Selected doctor
+  doctorId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Doctor',
+    required: true
+  },
+
+  status: {
+    type: String,
+    default: 'Pending'
+  },
+
+  notification: {
+    type: String
+  }
+
+}, { timestamps: true });
 
 module.exports = mongoose.model('Appointment', AppointmentSchema);
