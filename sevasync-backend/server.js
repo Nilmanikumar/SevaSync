@@ -8,28 +8,22 @@ connectDB();
 
 const app = express();
 
-app.use(express.json());
-app.use(cors());
+// ✅ CORS CONFIG
+app.use(cors({
+  origin: "http://localhost:5173", // React frontend
+  credentials: true
+}));
 
+// ✅ Body parser
+app.use(express.json());
+
+// Routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/patients", require("./routes/patientRoutes"));
-
 app.use("/api/doctor/auth", require("./routes/doctorAuthRoutes"));
-
-
-const Doctor = require('./models/Doctor');
-
-// Seed doctors
-app.post('/api/doctors/seed', async (req, res) => {
-  try {
-    await Doctor.insertMany(req.body);
-    res.status(201).json({ msg: "Doctors added" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+app.use("/api/doctor", require("./routes/doctorRoutes"));
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`🚀 Seva Sync Backend running on port ${PORT}`);
+  console.log(`🚀 Backend running on port ${PORT}`);
 });

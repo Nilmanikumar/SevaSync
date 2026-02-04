@@ -129,3 +129,4 @@ exports.logoutUser = async (req, res) => {
   }
 
 };
+
